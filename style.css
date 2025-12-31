@@ -1,0 +1,295 @@
+:root{
+  --bg1:#7a0a16;
+  --bg2:#b11226;
+  --bg3:#ff4d6d;
+
+  --glass: rgba(255,255,255,.14);
+  --stroke: rgba(255,255,255,.28);
+  --text: rgba(255,255,255,.92);
+  --muted: rgba(255,255,255,.72);
+  --shadow: 0 30px 90px rgba(0,0,0,.35);
+}
+
+*{ box-sizing:border-box; }
+
+body{
+  margin:0;
+  min-height:100vh;
+  font-family: system-ui, sans-serif;
+  color:var(--text);
+  background: linear-gradient(120deg,var(--bg1),var(--bg2),var(--bg3));
+  background-size:200% 200%;
+  animation:bgMove 12s ease-in-out infinite;
+  overflow:hidden;
+}
+
+@keyframes bgMove{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+
+/* ----- Sparkles ----- */
+.sparkles{
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.sparkles span{
+  position: absolute;
+  top: 110vh;              /* better for tall phones */
+  background: white;
+  border-radius: 50%;
+  opacity: .35;
+  filter: blur(.2px);
+  animation: floatUp linear infinite;
+}
+
+@keyframes floatUp{
+  to { transform: translateY(-230vh); opacity: 0; } /* taller travel */
+}
+
+/* ----- Swans Background ----- */
+.swans{
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.bg-swan{
+  position: absolute;
+  left: -220px;
+  filter: blur(.3px);
+  animation-name: swanDrift;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.bg-swan.reverse{
+  left: auto;
+  right: -220px;
+  animation-name: swanDriftReverse;
+}
+
+@keyframes swanDrift{
+  from { transform: translateX(-240px) translateY(0); }
+  to   { transform: translateX(120vw) translateY(-35px); }
+}
+
+@keyframes swanDriftReverse{
+  from { transform: translateX(240px) translateY(0) scaleX(-1); }
+  to   { transform: translateX(-120vw) translateY(-35px) scaleX(-1); }
+}
+
+/* layout */
+.wrap{
+  min-height:100vh;
+  display:grid;
+  place-items:center;
+  padding:24px;
+  position:relative;
+  z-index:2; /* above swans and sparkles */
+}
+
+.card{
+  width:min(900px,95vw);
+  border-radius:28px;
+  background:var(--glass);
+  border:1px solid var(--stroke);
+  backdrop-filter: blur(14px);
+  box-shadow:var(--shadow);
+  overflow:hidden;
+}
+
+.topbar{
+  display:flex;
+  justify-content:space-between;
+  padding:18px 22px;
+  border-bottom:1px solid rgba(255,255,255,.2);
+}
+
+.pill{
+  font-size:12px;
+  padding:8px 12px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.25);
+}
+
+.dots{opacity:.8}
+
+.content{
+  padding:26px;
+  display:grid;
+  grid-template-columns:1.2fr .8fr;
+  gap:26px;
+}
+
+@media(max-width:780px){
+  body{ overflow:auto; }
+  .content{ grid-template-columns:1fr; }
+}
+
+/* text */
+h1{
+  margin:0 0 10px;
+  font-size:clamp(32px,4vw,52px);
+}
+.subtitle{ color:var(--muted); margin-bottom:14px; }
+.msg{ line-height:1.7; margin-bottom:18px; }
+
+.reasons{
+  list-style:none;
+  padding:0;
+  margin:0;
+}
+.reasons li{
+  padding:12px;
+  border-radius:16px;
+  border:1px solid rgba(255,255,255,.2);
+  background:rgba(0,0,0,.12);
+  margin-bottom:10px;
+}
+
+/* side */
+.side{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+.photo{
+  height:220px;
+  border-radius:22px;
+  border:1px solid rgba(255,255,255,.2);
+  display:grid;
+  place-items:center;
+  position:relative;
+  background: rgba(0,0,0,.08);
+}
+
+.ring{
+  width:160px;
+  height:160px;
+  border:2px solid rgba(255,255,255,.35);
+  border-radius:50%;
+  animation:spin 12s linear infinite;
+}
+
+@keyframes spin{
+  to{ transform:rotate(360deg); }
+}
+
+.initials{
+  position:absolute;
+  font-weight:700;
+  letter-spacing:.1em;
+}
+
+.btn{
+  padding:12px;
+  border-radius:16px;
+  border:none;
+  cursor:pointer;
+  background:white;
+  color:#7a0a16;
+  font-weight:600;
+}
+
+.note{
+  font-size:13px;
+  color:var(--muted);
+}
+
+/* toast */
+.toast{
+  position:fixed;
+  bottom:24px;
+  left:50%;
+  transform:translateX(-50%) translateY(30px);
+  opacity:0;
+  padding:12px 18px;
+  border-radius:999px;
+  background:rgba(0,0,0,.45);
+  transition:.3s;
+  z-index:3;
+}
+
+.toast.show{
+  opacity:1;
+  transform:translateX(-50%) translateY(0);
+}
+
+/* ===== Mobile polish (iPhone 16 Pro etc.) ===== */
+@media (max-width: 520px){
+
+  body{ overflow: auto; }
+
+  .wrap{
+    padding: 14px;
+    padding-top: calc(14px + env(safe-area-inset-top));
+    padding-bottom: calc(14px + env(safe-area-inset-bottom));
+  }
+
+  .card{
+    width: 100%;
+    border-radius: 22px;
+  }
+
+  .topbar{
+    padding: 14px 16px;
+  }
+
+  .content{
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 16px;
+  }
+
+  h1{
+    font-size: 34px;
+    line-height: 1.05;
+  }
+
+  .msg{
+    font-size: 15px;
+  }
+
+  .reasons li{
+    padding: 11px 12px;
+    border-radius: 14px;
+  }
+
+  .side{ gap: 10px; }
+
+  .photo{
+    height: 170px;
+    border-radius: 18px;
+  }
+
+  .ring{
+    width: 128px;
+    height: 128px;
+  }
+
+  .btn{
+    width: 100%;
+    padding: 14px 12px;
+    border-radius: 16px;
+    font-size: 16px;
+  }
+
+  .note{
+    text-align: center;
+  }
+
+  .bg-swan{
+    filter: blur(.2px);
+  }
+
+  .sparkles, .swans{
+    overflow: hidden;
+  }
+}

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<script>
+  const v = (localStorage.getItem("love_login") || "").toLowerCase();
+  if (v !== "yara" && v !== "me") {
+    window.location.href = "login.html";
+  }
+</script>
+
+  <title>Thank You ❤️</title>
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="letter.css">
+
+
+</head>
+
+<body>
+  <!-- particles + swans backgrounds -->
+  <div class="sparkles" id="sparkles"></div>
+  <div class="swans" id="swans"></div>
+
+  <main class="wrap">
+    <section class="card">
+
+     
+      <div class="content">
+
+        <!-- LEFT -->
+        <div class="left">
+          <h1>Thank you, <span class="name">Yara</span> 🎀</h1>
+          <p class="subtitle">for finishing this year together. بحبك</p>
+
+         
+
+          <ul class="reasons">
+            <li>
+              I’m grateful for the laughs, the support
+            and the calm you brought.
+              you are and always be my only girl, the girl i want to spent my life with,
+              the only girl that makes me fell happy just by smiling, the girl that i would do anything for, the girl of my dearms, the girl i was waiting for to enter my life and shinging it.</li>
+          <li> <p class="msg">
+            would you spend the next ♾️ years with me ?
+          </p></li>
+            
+          </ul>
+
+        </div>
+
+        <!-- RIGHT -->
+        <aside class="side">
+          <div class="photo">
+            <div class="ring"></div>
+            <div class="initials">K + Y</div>
+            
+          </div>
+
+        <button class="btn" id="secretBtn">Click for a secret</button>
+
+          <p class="note">ou’re my favorite part of this year ❤️ 🫶</p>
+        </aside>
+
+      </div>
+    </section>
+  </main>
+
+  
+
+ <script>
+  // sparkles
+  const sparkles = document.getElementById("sparkles");
+  const SPARKLE_COUNT = 26;
+
+  for (let i = 0; i < SPARKLE_COUNT; i++) {
+    const sp = document.createElement("span");
+    sp.style.left = Math.random() * 100 + "vw";
+    sp.style.animationDuration = (6 + Math.random() * 10) + "s";
+    sp.style.animationDelay = (Math.random() * 6) + "s";
+    const size = 4 + Math.random() * 6;
+    sp.style.width = size + "px";
+    sp.style.height = size + "px";
+    sparkles.appendChild(sp);
+  }
+
+  // swans
+  const swans = document.getElementById("swans");
+  const SWAN_COUNT = 8; // 17 is overkill on phones
+
+  for (let i = 0; i < SWAN_COUNT; i++) {
+    const img = document.createElement("img");
+    img.src = "swan.png";
+    img.alt = "";
+    img.className = "bg-swan";
+
+    const size = 80 + Math.random() * 60;
+    const top = Math.random() * 85;
+    const duration = 26 + Math.random() * 30;
+    const delay = Math.random() * -60;
+    const opacity = 0.04 + Math.random() * 0.05;
+
+    img.style.width = size + "px";
+    img.style.top = top + "vh";
+    img.style.opacity = opacity;
+    img.style.animationDuration = duration + "s";
+    img.style.animationDelay = delay + "s";
+
+    if (Math.random() > 0.5) img.classList.add("reverse");
+    swans.appendChild(img);
+  }
+</script>
+
+<!-- load letter.js LAST -->
+
+
+  <!-- Love Letter Modal -->
+<!-- Love Letter Modal -->
+<div class="letter-overlay" id="letterOverlay">
+  <div class="envlope-wrapper">
+    <div id="envelope" class="close">
+      <div class="front flap"></div>
+      <div class="front pocket"></div>
+
+      <div class="letter">
+        <div class="words line1">To: MY LOVE ❤️❤️❤️❤️</div>
+        <div class="words line2">You are the best plot twist of my life</div>
+        <div class="words line2">I love you so much, i will choose you always forever and ever❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️</div>
+     
+        <div class="words line3">❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️</div>
+        
+      </div>
+
+      <div class="hearts">
+        <div class="heart a1"></div>
+        <div class="heart a2"></div>
+        <div class="heart a3"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- load LAST -->
+<script src="letter.js"></script>
+</body>
+</html>
+
+
+</body>
+</html>

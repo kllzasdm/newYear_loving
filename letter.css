@@ -1,0 +1,149 @@
+/* ===== Overlay ===== */
+.letter-overlay{
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: rgba(0,0,0,.65);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .28s ease;
+  z-index: 999;
+  backdrop-filter: blur(6px);
+}
+
+.letter-overlay.show{
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.envlope-wrapper{
+  padding: 18px;
+}
+
+/* ===== Envelope ===== */
+#envelope{
+  position: relative;
+  width: 280px;
+  height: 180px;
+  background: rgba(255,120,140,.30);
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+  box-shadow: 0 16px 45px rgba(0,0,0,.35);
+  perspective: 900px;
+}
+
+/* triangles must be 0x0 */
+.front{
+  position: absolute;
+  width: 0;
+  height: 0;
+}
+
+/* ===== Flap ===== */
+.flap{
+  z-index: 4;
+  border-left: 140px solid transparent;
+  border-right: 140px solid transparent;
+  border-top: 98px solid #ff9fb2;
+
+  border-bottom: 82px solid transparent;
+  transform-origin: top;
+  top: 0;
+  left: 0;
+  transition: transform .4s ease;
+}
+
+/* ===== Pocket ===== */
+.pocket{
+  z-index: 6;
+border-left: 140px solid #ffc1cc;
+border-right: 140px solid #ffc1cc;
+border-bottom: 90px solid #ff8fa3;
+
+  border-top: 90px solid transparent;
+  bottom: 0;
+  left: 0;
+  
+}
+
+/* ===== Letter ===== */
+.letter{
+  position: absolute;
+  width: 90%;
+  height: 90%;
+  left: 5%;
+  top: 5%;
+  background: rgba(255,255,255,.97);
+  border-radius: 12px;
+  box-shadow: 0 12px 26px rgba(0,0,0,.18);
+  padding: 14px 14px 10px;
+  overflow: hidden;
+
+  z-index: 4;              /* ← NEVER CHANGES */
+  transform: translateY(0);
+  transition: transform .4s ease;
+}
+
+/* paper lines */
+.letter::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,.05) 0 1px,
+    transparent 1px 18px
+  );
+  opacity:.14;
+}
+
+/* text */
+.words{
+  position: relative;
+  font-family: system-ui, sans-serif;
+  font-size: 14px;
+  line-height: 1.35;
+  color: rgba(0,0,0,.72);
+
+}
+
+.words.line1{ font-weight:800; }
+
+
+/* ===== Hearts ===== */
+.hearts{
+  position:absolute;
+  top: 58px;
+  left:0;
+  right:0;
+  z-index: 9;
+  pointer-events:none;
+}
+
+.heart{ opacity:0; }
+.open .heart{ opacity:1; }
+
+/* ===== Open / Close ===== */
+.open .flap{
+  transform: rotateX(180deg);
+}
+
+.close .flap{
+  transform: rotateX(0deg);
+}
+
+/* ONLY vertical motion */
+.close .letter{
+  transform: translateY(0);
+}
+
+.open .letter{
+  transform: translateY(-83px);  /* tuned slide */
+}
+
+/* ===== Mobile ===== */
+@media (max-width:520px){
+  #envelope{ width:260px; height:170px; }
+  .words{ font-size:13px; }
+}

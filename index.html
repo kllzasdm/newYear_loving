@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Enter 🤍</title>
+
+  <link rel="stylesheet" href="style.css">
+  <script src="login.js" defer></script>
+
+  <!-- small login-only styles -->
+  <style>
+    .loginBox{
+      max-width: 420px;
+      margin: 0 auto;
+      display: grid;
+      gap: 12px;
+      padding-top: 6px;
+    }
+    .loginInput{
+      width: 100%;
+      padding: 14px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.25);
+      background: rgba(0,0,0,.12);
+      color: rgba(255,255,255,.92);
+      outline: none;
+      font-size: 16px;
+    }
+    .loginInput:focus{
+      border-color: rgba(255,255,255,.40);
+      box-shadow: 0 0 0 4px rgba(255,255,255,.10);
+    }
+    .loginError{
+      margin: 6px 0 0;
+      font-size: 13px;
+      color: rgba(255,255,255,.85);
+      opacity: 0;
+      transform: translateY(-2px);
+      transition: .2s ease;
+    }
+    .loginError.show{
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+
+<body>
+  <!-- same backgrounds -->
+  <div class="sparkles" id="sparkles"></div>
+  <div class="swans" id="swans"></div>
+
+  <main class="wrap">
+    <section class="card">
+
+    
+
+      <div class="content" style="grid-template-columns:1fr; gap:18px;">
+        <div class="left" style="text-align:center;">
+          <h1>log in to my heart ❤️</h1>
+         <p class="subtitle">Who is the best girl in existence? </p>
+
+          <p class="subtitle">the one with the key to my heart.</p>
+
+          <form id="loginForm" class="loginBox" autocomplete="off">
+            <input id="nameInput" class="loginInput" type="text"
+              placeholder="..."
+              autocapitalize="none"
+              spellcheck="false"
+              required
+            />
+            <button class="btn" type="submit">Enter</button>
+            <p id="error" class="loginError">Nope 😌 (hint: who is the one ?)</p>
+          </form>
+
+        
+        </div>
+      </div>
+
+    </section>
+  </main>
+</body>
+</html>
